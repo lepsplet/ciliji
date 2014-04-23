@@ -1,2 +1,13 @@
-<h1>Goals#index</h1>
-<p>Find me in app/views/goals/index.html.erb</p>
+<h1>Dnevni cilji</h1>
+<% if @goals.empty? %>
+	<p>Nimaš nobenih neizpolnjenih ciljev. Ti si car!</p>
+<% else %>
+	<ul>
+	<% @goals.each do |goal| %>
+		<li><%= link_to goal.goals_name, edit_goal_path(goal) %>
+	<%= link_to 'izbriši cilj', goal_path(goal), method: :delete, data: { confirm: "Ali si prepričan, da želiš izbrisati cilj" } %>
+	</li>
+	<% end %>
+	</ul>
+<% end %>
+<%= link_to 'Nov cilj', new_goal_path %>
